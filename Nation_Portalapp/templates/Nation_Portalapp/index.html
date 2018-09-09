@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h1>{{ issue }} of posts</h1>
+<hr>
+{% for val in object_list %}
+<a href='{% url "detail" id=val.id %}'>{{val.issue}}</a><br/>
+    {{val.complaint}}<br/>
+    {{val.time}}<br/>
+    {{val.update}}<br/>
+    {{val.id}}<br/>
+{% endfor %}
+</body>
+</html>

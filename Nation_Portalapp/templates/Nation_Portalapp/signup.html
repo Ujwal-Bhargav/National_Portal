@@ -1,0 +1,102 @@
+<html>
+<title>Register|Nation_Portal</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+}
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.navbar {
+  width: 100%;
+  background-color: black;
+  overflow: auto;
+}
+
+.navbar a {
+  float: right;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #055;
+}
+
+.active {
+  background-color: #4CAF;
+}
+input[type=text], input[type=password],select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+</style>
+<body style="background-color:orange">
+<div class="navbar">
+    <a href="/nation_portal/home/"><i class="fa fa-fw fa-home"></i><strong>Home</strong></a>
+    <a  href="/nation_portal/home/login"><i class="fa fa-fw fa-user"></i><strong> Login</strong></a>
+    <a class="active" href="/nation_portal/home/register/"><i class="fa fa-fw fa-user"></i><strong> Register</strong></a>
+    <a href="/nation_portal/home/about" class="fa fa-fw fa-user"><strong> About</strong></a>
+</div>
+<!--<nav class="navbar navbar-inverse">-->
+  <!--<div class="container-fluid">-->
+    <!--<div class="navbar-header">-->
+      <!--<a   class="navbar-brand" href="/nation_portal/home/">Home</a>-->
+              <!--<a class="navbar-brand" href="/nation_portal/home/login/">Login</a>-->
+
+    <!--</div>-->
+
+  <!--</div>-->
+<!--</nav>-->
+
+    <h1 style="text-align:Center">Register</h1><hr>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="form-group"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-7">
+            <div class="col-md-8 col-sm-20 col-xs-12">
+            <form method="POST" action="" enctype="multipart/form-data">
+                <div class="form-group" >
+                {%csrf_token%}
+                    <h5>{{form.as_p}}</h5>
+                </div>
+
+                <button type="submit" class="btn btn-primary" >Submit</button>
+
+            </form>
+            </div>
+              </div>
+        <!--<div class="col-md-4 col-sm-4 col-xs-12"></div>-->
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>{% block head_title  %}National_Portal{% endblock %}</title>
+    <!--<style>{% block style %} {% endblock %}</style>-->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">-->
+
+<style>
+    .btn-group button {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+
+</style>
+<link rel="stylesheet" href='{% static "/css/base.css" %}'/>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body style="background-color:orange">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <!--<a class="navbar-brand" href="/nation_portal/user/<int:id>/edit">Update</a>-->
+        <!--<a class="navbar-brand" href="/nation_portal/user/<int:id>/delete">Delete</a>-->
+      <a class="navbar-brand" href="/nation_portal/home/">Logout</a>
+    <!--<a class ="navbar-brand" href="/nation_portal/user/index" >Back</a>-->
+    </div>
+  </div>
+</nav>
+    <body style="background-color:white">
+<div class="btn-group">
+    <br>
+    &nbsp<a href="/nation_portal/user" class="btn btn-primary">&nbspBack</a>
+</div>
+</head>
+
+
+{% if messages %}
+<div class="messages">
+    <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class='container'>
+    {% block content %}
+    <div class='col-sm-6 col-sm-offset-3'>
+    <h1>{{ issue }} of Complaints</h1>
+
+    {% for val in object_list %}
+        <div class="row">
+  <div class="col-sm-12">
+    <div class="thumbnail">
+        {% if obj.image %}
+        <img src='{{ obj.image.url }}' class='img-responsive'/>
+        {% endif %}
+      <div class="caption">
+        <h3><a href='{{ val.get_absolute_url }}'>{{val.issue}}</a></h3>
+        <p>{{val.complaint|linebreaks|truncatechars:100}}<small>{{val.time | timesince}}ago</small></p>
+        <p><a href="{{ val.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
+
+
+
+      </div>
+    </div>
+  </div>
+            <hr/>
+        </div>
+
+    {% endfor %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}"> next </a>
+
+        {% endif %}
+    </span>
+</div>
+    {% endblock content %}
+
+</div>
+
+<!--<img src='{% static "imag/beach.jpg" %}' />-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

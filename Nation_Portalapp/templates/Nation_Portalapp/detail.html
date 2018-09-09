@@ -1,0 +1,67 @@
+<!--{% extends "Nation_Portalapp/base.html" %}-->
+
+<!--{% block head_title %}{{ instance.issue}} |{{ block.super }} {% endblock %}-->
+<html>
+<style>{% block style %}
+    h1{
+     color: #818;
+     font-style:italic;
+     }
+     img{
+        display: block;
+        margin-left:auto;
+        margin-right:auto;
+
+     }
+.btn-group button {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+{% endblock %}</style>
+
+
+{% block content %}
+
+<h2>{{ issue }} <br><small>{{instance.time}}</small></h2>
+<!--<a href="/nation_portal/user/index" class="btn btn-primary">Back</a>-->
+    <br>
+<div class="btn-group">
+    <br>
+    <a href="edit" class="btn btn-primary">Update Post</a>
+    <p>                      </p>
+    <br><br><br><br>
+    {% if request.user.is_superuser %}
+        <a href="delete" class="btn btn-primary">Resolved</a>
+    {% endif %}
+</div>
+<div class='col-sm-6 col-sm-offset-3'>
+    <br>
+    {% if instance.image %}
+    <center><img src='{{ instance.image.url }}' class='img-responsive' height="500px" width="750px"/></center>
+    {% endif %}
+
+<!--{{instance.title}}<br/>-->
+    <br>
+    <h4>Complaint:</h4> &nbsp&nbsp{{instance.complaint |linebreaks}}<br/>
+    <h4>Location :{{instance.location }}<br/></h4>
+
+    <!--{{instance.update}}<br/>-->
+<!--{{instance.id}}<br/>-->
+</div>
+
+    <!--{% endblock  %}-->
+</html>
