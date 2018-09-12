@@ -25,7 +25,7 @@ SECRET_KEY = 'we%(yz5oe8e)mi&fn8gw@vdmxc)b0nbt)!oka4+up+h35y5%_+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nportal.us-west-2.elasticbeanstalk.com',]
 
 
 # Application definition
