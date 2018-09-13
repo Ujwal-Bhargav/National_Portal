@@ -132,16 +132,29 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
-STATIC_URL = '127.0.0.1:8000/nation_portal/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
+AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-west-2-758329623212'
+AWS_DOMAIN = 's3.us-west-2.elasticbeanstalk.com'
+AWS_S3_CUSTOM_DOMAIN = '{0}.{1}'.format(AWS_STORAGE_BUCKET_NAME,AWS_DOMAIN)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "Nation_Portalapp/static"),
-    #'/var/www/static/',
-]
+# STATIC_URL = '127.0.0.1:8000/nation_portal/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
 
-STATIC_ROOT= os.path.join(os.path.dirname(BASE_DIR),"Nation_Portal/Nation_Portalapp/static_cdn")
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "Nation_Portalapp/static"),
+#     '/var/www/static/',
+# ]
 
-MEDIA_URL='/media/'
-MEDIA_ROOT= os.path.join(os.path.dirname(BASE_DIR),"Nation_Portal/Nation_Portalapp/media_cdn")
+# STATIC_ROOT= os.path.join(os.path.dirname(BASE_DIR),"Nation_Portal/Nation_Portalapp/static_cdn")
+#
+# MEDIA_URL='/media/'
+# MEDIA_ROOT= os.path.join(os.path.dirname(BASE_DIR),"Nation_Portal/Nation_Portalapp/media_cdn")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/static/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+MEDIA_URL = "https://{0}/{1}/media/".format(AWS_DOMAIN,AWS_STORAGE_BUCKET_NAME)
+DEFAULT_FILE_STORAGE = 'Nation_Portal.storage_backends.DocumentStorage'

@@ -12,7 +12,7 @@ def upload_location(instance,filename):
 class Post(models.Model):
     # user=models.ForeignKey(settings.AUTH_USER_MODEL,blank=True,null=True)
     issue=models.CharField(max_length=500)
-    image=models.ImageField(upload_to='upload_location',
+    image=models.ImageField(upload_to='media_cdn/upload_location',
         null=True,blank=True,width_field="widthfield",height_field="heightfield")
     widthfield=models.IntegerField(default=10)
     heightfield=models.IntegerField(default=10)
